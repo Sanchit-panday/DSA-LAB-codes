@@ -16,7 +16,7 @@ void sum(int n, int &ans)
 int main()
 {
     int ans = 0, n;
-    cout << "Enter the n : " << endl;
+    cout << "Enter the n : ";
     cin >> n;
     sum(n, ans);
     cout << "sum = " << ans;

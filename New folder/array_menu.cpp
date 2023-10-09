@@ -3,41 +3,40 @@ a. insert a given element at specific position.
 b. delete an element from a specific position of the array.
 c. linear search to search an element
 d. traversal of the array */
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-bool insert_element(int *arr, int *n)
+#include <iostream>
+using namespace std;
+bool insert(int *arr, int &n)
 {
-    printf("Element to insert: ");
+    cout << "Element to insert: ";
     int element;
-    scanf("%d",&element);
-    printf("Enter position: ");
+    cin >> element;
+    cout << "Enter position: ";
     int position;
-    scanf("%d", &position);
-    if (position >= 0 && position < *n)
+    cin >> position;
+    if (position >= 0 && position < n)
     {
-        for (int i = *n; i > position; i--)
+        for (int i = n; i > position; i--)
         {
             arr[i] = arr[i - 1];
         }
         arr[position] = element;
-        (*n)++;
+        n++;
         return true;
     }
     return false;
 }
-bool remove_element(int *arr, int *n)
+bool remove(int *arr, int &n)
 {
     int position;
-    printf("Enter position: ");
-    scanf("%d", &position);
-    if (position >= 0 && position < *n)
+    cout << "Enter position: ";
+    cin >> position;
+    if (position >= 0 && position < n)
     {
-        for (int i = position; i < *n; i++)
+        for (int i = position; i < n; i++)
         {
             arr[i] = arr[i + 1];
         }
-        (*n)--;
+        n--;
         return true;
     }
     return false;
@@ -45,36 +44,36 @@ bool remove_element(int *arr, int *n)
 void linear_search(int arr[], int n)
 {
     int element, flag = 0;
-    printf("Find the element: ");
-    scanf("%d", &element);
+    cout << "Find the element: ";
+    cin >> element;
     for (int i = 0; i < n; i++)
     {
         if (arr[i] == element)
         {
-            printf("Found at %d \n", i);
+            cout << "Found at " << i << endl;
             flag =1;
         }
     }
     if (flag<1) 
     {
-        printf("NOT FOUND\n");
+        cout << "NOT FOUND\n";
     }
     
 }
 void menu(int *arr, int n)
 {
     int option;
-    printf("\nEnter option: ");
-    scanf("%d", &option);
+    cout << "\nEnter option: ";
+    cin >> option;
     switch (option)
     {
     case 1:
         // insert(arr, n) ? cout << "Element inserted\n" : fprintf(stderr, "Invalid Position\n");
-        insert_element(arr, &n) ? printf("Element inserted\n") : fprintf(stderr, "ERROR\n");
+        insert(arr, n) ? void(cout << "Element inserted\n") : void(fprintf(stderr, "ERROR\n"));
         menu(arr, n);
         break;
     case 2:
-        remove_element(arr, &n) ? printf("Element deleted\n") : fprintf(stderr, "ERROR\n");
+        remove(arr, n) ? void(cout << "Element deleted\n") : void(fprintf(stderr, "ERROR\n"));
         menu(arr, n);
         break;
     case 3:
@@ -82,12 +81,12 @@ void menu(int *arr, int n)
         menu(arr, n);
         break;
     case 4:
-        printf("\n");
+        cout << "\n";
         for (int i = 0; i < n; i++)
         {
-            printf("%d ", arr[i]);
+            cout << arr[i] << " ";
         }
-        printf("\n");
+        cout << "\n";
         menu(arr, n);
         break;
     case 5:
@@ -101,17 +100,17 @@ void menu(int *arr, int n)
 }
 int main()
 {
-    int n, *arr;
-    printf("Enter size n : ");
-    scanf("%d", &n);
-    arr = (int*)malloc(n * sizeof(int));
-    printf("Enter Array elements: ");
+    int n;
+    cout << "Enter size n : ";
+    cin >> n;
+    int *arr = new int[n];
+    cout << "Enter Array elements: ";
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &arr[i]);
+        cin >> arr[i];
     }
-    printf("***MENU***\n");
-    printf("1. Insert\n2. Delete\n3. Linear Search\n4. Traverse\n5. Exit\n");
+    cout << "***MENU***\n";
+    cout << "1. Insert\n2. Delete\n3. Linear Search\n4. Traverse\n5. Exit\n";
     menu(arr, n);
     return 0;
 }
