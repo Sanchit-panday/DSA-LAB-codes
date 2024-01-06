@@ -78,13 +78,15 @@ int countNodes(struct Node *head)
 
     return result;
 }
-struct Node *delPos(struct Node *head)
+
+struct Node *delPos (struct Node *head)
 {
     if (head == NULL)
     {
         printf("List is empty. Deletion is not possible.\n");
         return head;
     }
+
     int position;
     printf("Enter index: ");
     scanf("%d", &position);
@@ -104,11 +106,13 @@ struct Node *delPos(struct Node *head)
         }
         prev = prev->next;
     }
+
     if (position > countNodes(head)-1 || position < 0)
     {
         printf("Invalid position\n");
         return head->next;
     }
+    
     struct Node *current = prev->next;
     prev->next = current->next;
 
